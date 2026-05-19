@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>テトリス</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #1a1a2e;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: 'Courier New', monospace;
+        color: #eee;
+      }
+
+      #app {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+      }
+
+      #game-canvas {
+        border: 2px solid #4a4a8a;
+        display: block;
+        box-shadow: 0 0 20px rgba(74, 74, 138, 0.5);
+      }
+
+      #side-panel {
+        width: 140px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .panel-box {
+        background: #16213e;
+        border: 1px solid #4a4a8a;
+        border-radius: 6px;
+        padding: 12px;
+      }
+
+      .panel-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #8888bb;
+        margin-bottom: 6px;
+      }
+
+      .panel-value {
+        font-size: 22px;
+        font-weight: bold;
+        color: #e8e8ff;
+      }
+
+      #next-canvas {
+        display: block;
+        margin-top: 6px;
+      }
+
+      #controls {
+        font-size: 11px;
+        color: #8888bb;
+        line-height: 1.8;
+      }
+
+      #controls span {
+        color: #aaaadd;
+        font-weight: bold;
+      }
+
+      #overlay {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(10, 10, 20, 0.85);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+      }
+
+      #overlay h1 {
+        font-size: 36px;
+        color: #c8c8ff;
+        letter-spacing: 4px;
+        text-shadow: 0 0 20px rgba(150, 150, 255, 0.6);
+      }
+
+      #overlay p {
+        color: #8888bb;
+        font-size: 14px;
+        letter-spacing: 1px;
+      }
+
+      #start-btn {
+        margin-top: 8px;
+        padding: 12px 32px;
+        background: #4a4a8a;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-family: inherit;
+        cursor: pointer;
+        letter-spacing: 2px;
+        transition: background 0.2s;
+      }
+
+      #start-btn:hover {
+        background: #6a6aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="game-canvas" width="300" height="600"></canvas>
+      <div id="side-panel">
+        <div class="panel-box">
+          <div class="panel-label">SCORE</div>
+          <div class="panel-value" id="score-display">0</div>
+        </div>
+        <div class="panel-box">
+          <div class="panel-label">LEVEL</div>
+          <div class="panel-value" id="level-display">1</div>
+        </div>
+        <div class="panel-box">
+          <div class="panel-label">LINES</div>
+          <div class="panel-value" id="lines-display">0</div>
+        </div>
+        <div class="panel-box">
+          <div class="panel-label">NEXT</div>
+          <canvas id="next-canvas" width="116" height="80"></canvas>
+        </div>
+        <div class="panel-box" id="controls">
+          <span>←→</span> 移動<br />
+          <span>↑</span> 回転<br />
+          <span>↓</span> ソフトドロップ<br />
+          <span>Space</span> ハードドロップ<br />
+          <span>P</span> ポーズ
+        </div>
+      </div>
+    </div>
+
+    <div id="overlay">
+      <h1>テトリス</h1>
+      <p>スペースキーまたはボタンでスタート</p>
+      <button id="start-btn">START</button>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

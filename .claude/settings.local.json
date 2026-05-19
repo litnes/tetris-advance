@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(if \\(-not $?\\) { \"Directory not found or empty\" })",
+      "Bash(git config *)"
+    ]
+  }
+}
